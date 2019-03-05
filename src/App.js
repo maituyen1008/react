@@ -3,11 +3,13 @@ import axios from 'axios';
 
 function User (props) {
     return (
-      <div>
-        <img src={props.user.picture.medium}/>
-        <p>{props.user.name.first} {props.user.name.last}</p>
-        <p>{props.user.email}</p>
-        <p>{props.user.cell}</p>
+      <div className="container">
+        <tr>
+          <td className="row-1"><img src={props.user.picture.thumbnail}/></td>
+          <td className="">{props.user.name.first} {props.user.name.last}</td>
+          <td>{props.user.email}</td>
+          <td>{props.user.cell}</td>
+        </tr>
       </div>
     );
 }
@@ -20,7 +22,7 @@ class App extends Component{
     }
   }
   componentDidMount(){
-    axios.get('https://randomuser.me/api/?results=1')
+    axios.get('https://randomuser.me/api/?results=100')
     .then(response =>{ 
       this.setState({users: response.data.results})
       console.log(this.state.users)
@@ -29,12 +31,18 @@ class App extends Component{
   }
   render(){
     const users = this.state.users.map((user, index) => 
-      <div key={index}><User user={user}  /></div>
+      <div key={index}><User user={user}/></div>
     )
     return (
-      <div>
-        {users}
-      </div>
+      <thread>
+        <tr>
+          <th className="row-1">Image</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+        </tr>
+        {users} 
+      </thread>
     );
   }
 }
