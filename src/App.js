@@ -21,7 +21,7 @@ class App extends Component{
     }
   }
   componentDidMount(){
-    axios.get('https://randomuser.me/api/?results=5')
+    axios.get('https://randomuser.me/api/?results=100')
     .then(response =>{ 
       this.setState({users: response.data.results})
       console.log(this.state.users)
